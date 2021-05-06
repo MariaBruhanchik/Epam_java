@@ -1,4 +1,4 @@
-package main.java.fundamentalJava;
+package fundamentalJava;
 
 public class MonthMain {
     public static void main(String[] args) {

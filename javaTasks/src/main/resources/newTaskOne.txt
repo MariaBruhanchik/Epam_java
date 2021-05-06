@@ -7,4 +7,9 @@ java
   c++
   python
   c#
+ java
+  javascript
+  c++
+  python
+  c#
  java]

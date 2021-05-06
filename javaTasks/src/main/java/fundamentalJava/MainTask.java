@@ -1,4 +1,4 @@
-package main.java.fundamentalJava;
+package fundamentalJava;
 
 public class MainTask {
     public static void main(String[] args) {
@@ -9,7 +9,7 @@ public class MainTask {
         System.out.print("Массив: "+reverseArray);
 
        // System.out.print("\nМассив в обратном порядке: ");
-        System.out.println("Массив в обратном порядке: ");
+        System.out.println("Reverse matrix : ");
 
         for (int i = reverseArray.length-1; i>=0;i--) {
          //   System.out.print(reverseArray[i]+" ");
