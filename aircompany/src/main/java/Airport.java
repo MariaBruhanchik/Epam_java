@@ -19,7 +19,11 @@ public class Airport {
     public List<PassengerPlane> getPassengerPlane() {
         List<? extends Plane> planes = this.planes;
         List<PassengerPlane> passengerPlanes = new ArrayList<>();
-        for (Plane plane : planes) {if (plane instanceof PassengerPlane) {passengerPlanes.add((PassengerPlane) plane);}}
+        for (Plane plane : planes) {
+            if (plane instanceof PassengerPlane) {
+                passengerPlanes.add((PassengerPlane) plane);
+            }
+        }
         return passengerPlanes;
     }
 
@@ -46,15 +50,15 @@ public class Airport {
 
 
     public List<MilitaryPlane> getTransportMilitaryPlanes() {
-    List<MilitaryPlane> transportMilitaryPlanes = new ArrayList<>();
-    List<MilitaryPlane> militaryPlanes = getMilitaryPlanes();
-    for (int i = 0; i < militaryPlanes.size(); i++) {
-    MilitaryPlane militaryPlane = militaryPlanes.get(i);
-    if (militaryPlane.getMilitaryType() == MilitaryType.TRANSPORT) {
-    transportMilitaryPlanes.add(militaryPlane);
-    }
-    }
-    return transportMilitaryPlanes;
+        List<MilitaryPlane> transportMilitaryPlanes = new ArrayList<>();
+        List<MilitaryPlane> militaryPlanes = getMilitaryPlanes();
+        for (int i = 0; i < militaryPlanes.size(); i++) {
+            MilitaryPlane militaryPlane = militaryPlanes.get(i);
+            if (militaryPlane.getMilitaryType() == MilitaryType.TRANSPORT) {
+                transportMilitaryPlanes.add(militaryPlane);
+            }
+        }
+        return transportMilitaryPlanes;
     }
 
     public List<MilitaryPlane> getBomberMilitaryPlanes() {
@@ -81,31 +85,18 @@ public class Airport {
     }
 
     public Airport sortByMaxDistance() {
-        Collections.sort(planes, new Comparator<Plane>() {
-            public int compare(Plane planeThatIsComparedMaxFlightDistance, Plane anotherPlaneThatIsComparedMaxFlightDistance) {
-                return planeThatIsComparedMaxFlightDistance.getMaxFlightDistance() - anotherPlaneThatIsComparedMaxFlightDistance.getMaxFlightDistance();
-            }
-        });
+        planes.sort(Comparator.comparingInt(Plane::getMaxFlightDistance));
         return this;
     }
 
 
     public Airport sortByMaxSpeed() {
-        Collections.sort(planes, new Comparator<Plane>() {
-            public int compare(Plane planeThatIsComparedByMaxSpeed, Plane anotherPlaneThatIsComparedByMaxSpeed) {
-                return planeThatIsComparedByMaxSpeed.getMaxSpeed() - anotherPlaneThatIsComparedByMaxSpeed.getMaxSpeed();
-            }
-        });
+        planes.sort(Comparator.comparingInt(Plane::getMaxSpeed));
         return this;
     }
 
     public Airport sortByMaxLoadCapacity() {
-        Collections.sort(planes, new Comparator<Plane>() {
-            public int compare(Plane planeThatIsComparedByMaxLoadCapacity, Plane anotherPlaneThatIsComparedByMaxLoadCapacity) {
-
-                return planeThatIsComparedByMaxLoadCapacity.getMinLoadCapacity() - anotherPlaneThatIsComparedByMaxLoadCapacity.getMinLoadCapacity();
-            }
-        });
+        planes.sort(Comparator.comparingInt(Plane::getMaxLoadCapacity));
         return this;
     }
 
@@ -127,8 +118,6 @@ public class Airport {
                 "Planes=" + planes.toString() +
                 '}';
     }
-
-
 
 
 }
