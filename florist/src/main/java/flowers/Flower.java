@@ -1,13 +1,16 @@
-package main.java.flowerParameters;
+package flowers;
+
+import flowerParameters.FlowerFreshness;
 
 import java.util.Objects;
 
-public class Flower {
+abstract public class Flower {
     private String name;
     private String color;
     private double length;
     private double prise;
     private FlowerFreshness freshness;
+
 
     public Flower(String name, String color, double length, double prise, FlowerFreshness freshness) {
         this.name = name;

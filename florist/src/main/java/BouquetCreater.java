@@ -1,12 +1,10 @@
-package main.java;
+import bouquetParameters.Bouquet;
+import bouquetParameters.BouquetAccessories;
+import flowerParameters.FinderFlowerLength;
+import flowerParameters.FlowerFreshness;
+import flowerParameters.FlowerTypes;
+import flowers.*;
 
-import main.java.bouquetParameters.Bouquet;
-import main.java.bouquetParameters.BouquetAccessories;
-import main.java.flowerParameters.FinderFlowerLength;
-import main.java.flowerParameters.FlowerFreshness;
-import main.java.flowerTypes.GardenFlower;
-import main.java.flowerTypes.HomeFlower;
-import main.java.flowerTypes.MeadowFlower;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -14,27 +12,27 @@ import java.util.List;
 
 public class BouquetCreater {
     public static void main(String[] args) {
-        GardenFlower rose = new GardenFlower("Rose", "white", 35, 7.20, FlowerFreshness.FRESH, true);
-        GardenFlower pion = new GardenFlower("Pion", "red", 40, 8.50, FlowerFreshness.NOT_FRESH, true);
-        MeadowFlower camomile = new MeadowFlower("Camomile", "white", 38, 5.50, FlowerFreshness.FRESH, true);
-        MeadowFlower cornflower = new MeadowFlower("Cornflower", "blue", 30, 5.00, FlowerFreshness.FRESH, true);
-        HomeFlower mint = new HomeFlower("Mint", "green", 25, 10.00, FlowerFreshness.FRESH, false);
-        HomeFlower orchid = new HomeFlower("Orchid", "white", 50, 12.50, FlowerFreshness.NOT_FRESH, true);
+        Rose rose = new Rose("Rose", "white", 35, 7.20, FlowerFreshness.FRESH);
+        Pion pion = new Pion("Pion", "red", 40, 8.50, FlowerFreshness.NOT_FRESH);
+        Camomile camomile = new Camomile("Camomile", "white", 38, 5.50, FlowerFreshness.FRESH);
+        Cornflower cornflower = new Cornflower("Cornflower", "blue", 30, 5.00, FlowerFreshness.FRESH);
+        Mint mint = new Mint("Mint", "green", 25, 10.00, FlowerFreshness.FRESH);
+        Orchid orchid = new Orchid("Orchid", "white", 50, 12.50, FlowerFreshness.NOT_FRESH);
 
         Bouquet bouquet = new Bouquet();
-        bouquet.createBouquet(pion, 3).createBouquet(rose, 3).createBouquet(mint, 2);
+        bouquet.createBouquet(rose, 3).createBouquet(pion, 3).createBouquet(mint, 2);
 
         double fullCoastOfTheBouquet = bouquet.getBouquetPrise() + BouquetAccessories.WRAPPING.getPrice() + BouquetAccessories.TAPE.getPrice();
         System.out.println("Full Coast of the Bouquet: " + fullCoastOfTheBouquet + " rubles");
 
         List<String> freshnessFlowers = new ArrayList<>();
         FinderFlowerLength finderFlowerLength = new FinderFlowerLength(35, 40);
-        freshnessFlowers.add(pion.getFreshness() + " " + pion.getName());
         freshnessFlowers.add(rose.getFreshness() + " " + rose.getName());
+        freshnessFlowers.add(pion.getFreshness() + " " + pion.getName());
         freshnessFlowers.add(mint.getFreshness() + " " + mint.getName());
 
-        finderFlowerLength.findLength(pion);
         finderFlowerLength.findLength(rose);
+        finderFlowerLength.findLength(pion);
         finderFlowerLength.findLength(mint);
 
 

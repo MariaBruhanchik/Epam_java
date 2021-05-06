@@ -1,4 +1,4 @@
-package main.java.bouquetParameters;
+package bouquetParameters;
 
 import java.util.ArrayList;
 import java.util.List;

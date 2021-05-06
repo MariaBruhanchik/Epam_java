@@ -1,4 +1,4 @@
-package main.java.flowerParameters;
+package flowerParameters;
 
 public enum FlowerFreshness {
     FRESH,NOT_FRESH,WILTED

@@ -1,4 +1,6 @@
-package main.java.flowerParameters;
+package flowerParameters;
+
+import flowers.Flower;
 
 public class FinderFlowerLength {
     double shortLength;

@@ -1,6 +1,6 @@
-package main.java.bouquetParameters;
+package bouquetParameters;
 
-import main.java.flowerParameters.Flower;
+import flowers.Flower;
 
 import java.util.ArrayList;
 import java.util.List;
