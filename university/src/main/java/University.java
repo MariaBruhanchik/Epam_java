@@ -10,9 +10,9 @@ public class University {
         Student bob = new Student("Bob", "Stone");
         Student tony = new Student("Tony", "Stock");
 
-        Group groupEconomic = new Group(1, Faculty.ECONOMIC);
-
-        Group groupLinguistic = new Group(3, Faculty.LINGUISTIC);
+        Group groupEconomic = null;
+        Group groupLogistic=null;
+        Group groupLinguistic = null;
 
 
         try {
@@ -64,11 +64,13 @@ public class University {
         } catch (NoSubjectException noSubjectException) {
             System.out.println(noSubjectException.getMessage() + "  " + "StudentId: " + noSubjectException.getStudentId());
         }finally{
-            Group groupLogistic = new Group(2, Faculty.LOGISTIC);
+            groupLinguistic = new Group(3, Faculty.LINGUISTIC);
+            groupEconomic = new Group(1, Faculty.ECONOMIC);
+            groupLogistic= new Group(2, Faculty.LOGISTIC);
             groupLogistic.addStudent(tom);
             groupLogistic.addStudent(bob);
 
-            // System.out.println(groupLogistic.averageSubjectScoreForGroup("Physics"));
+            
             System.out.println("Group  № " + groupLogistic.getNumberOfGroup() + " : " + groupLogistic.getFaculty() + groupLogistic.averageSubjectScoreForGroup("Math"));
 
         }

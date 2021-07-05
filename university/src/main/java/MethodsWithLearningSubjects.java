@@ -25,12 +25,12 @@ public class MethodsWithLearningSubjects {
     }
 
     void addSubjMark(String nameSubject, Integer[] marks) throws WrongMarkException {
-        addSubj(nameSubject);
-            learningSubjects.get(nameSubject).addAll(Arrays.asList(marks));
             for (int i = 0; i <= marks.length - 1; i++)
                 if (marks[i] < 0 || marks[i] > 10) {
                     throw new WrongMarkException(studentId, " The mark can't be less then 0 and more then 10", marks[i]);
                 }
+        addSubj(nameSubject);
+        learningSubjects.get(nameSubject).addAll(Arrays.asList(marks));
 
         }
 
