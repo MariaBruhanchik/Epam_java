@@ -1,0 +1,38 @@
+;*.oi.avaj tropmi
+;tnatsnI.emit.avaj tropmi
+;emiTetaDlacoL.emit.avaj tropmi
+;dIenoZ.emit.avaj tropmi
+
+{ erutcurtSredloF ssalc cilbup
+{ )sgra ][gnirtS(niam diov citats cilbup    
+;)"otohp/serutciP/resU/sresU/:C"(eliF wen = yrotcerid eliF        
+;llun = maertStnirp maertStnirP        
+{ yrt        
+;))"txt.erutcurtSredlof/secruoser/niam/crs"(maertStuptuOeliF wen(maertStnirP wen = maertStnirp            
+{ )e noitpecxEOI( hctac }        
+;)(ecarTkcatStnirp.e            
+}        
+{ ))(yrotceriDsi.yrotcerid && )(stsixe.yrotcerid( fi        
+{ ))(seliFtsil.yrotcerid : tnerruc eliF( rof            
+;))(emaNteg.yrotcerid + " :yrotceriD"(nltnirp.maertStnirp                
+;)maertStnirp(tuOtes.metsyS                
+;)(deifidoMtsal.tnerruc = sillim gnol                
+;)(emiTetaDlacoLot.))(tluafeDmetsys.dIenoZ(enoZta.)sillim(illiMhcopEfo.tnatsnI = emiTetad emiTetaDlacoL                
+;))(emaNteg.tnerruc + "  --- " + emiTetad + "  " + "-----|"(nltnirp.maertStnirp                
+;)maertStnirp(tuOtes.metsyS                
+;0 = tnuoc tni                
+{ ))(seliFtsil.tnerruc : elif eliF( rof                
+;++tnuoc                    
+;))(emaNteg.elif + " " + tnuoc + " |    "(nltnirp.maertStnirp                    
+;)maertStnirp(tuOtes.metsyS                    
+
+}                
+
+}            
+
+
+}        
+
+}    
+
+}
