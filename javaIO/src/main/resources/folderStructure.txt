@@ -84,7 +84,6 @@ Directory: photo
     | 82 IMG-50abc5eebf6d4f70346bc25d0f95fd83-V.jpg
     | 83 IMG-607d4717929abcb02b7286b9aac0573f-V.jpg
     | 84 IMG-a2e7236a64dbb381f08251981d997d67-V.jpg
-Directory: photo
 |-----  2020-02-11T23:38:49.238 ---  Наше первое выступление 27.01.2018
     | 1 DSC_0125.JPG
     | 2 DSC_0126.JPG
@@ -202,7 +201,6 @@ Directory: photo
     | 114 S2050011.MP4
     | 115 S2050012.MP4
     | 116 S2050013.MP4
-Directory: photo
 |-----  2020-02-11T23:34:59.063 ---  ноябрь 2017
     | 1 DSC_0001.JPG
     | 2 DSC_0002.JPG
@@ -232,7 +230,6 @@ Directory: photo
     | 26 DSC_0043.JPG
     | 27 DSC_0044.JPG
     | 28 DSC_0045.JPG
-Directory: photo
 |-----  2020-02-11T23:35:03.703 ---  октябрь 2017
     | 1 DSC_0347.JPG
     | 2 DSC_0349.JPG
@@ -273,3 +270,8 @@ Directory: photo
     | 37 DSC_0389.JPG
     | 38 DSC_0390.JPG
     | 39 DSC_0391.JPG
+CountFolder  4
+CountFile  267
+Average count file: 66
+Count spell 3354
+Average spell 12.0

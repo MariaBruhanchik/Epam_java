@@ -13,8 +13,8 @@
 ;)(ecarTkcatStnirp.e            
 }        
 { ))(yrotceriDsi.yrotcerid && )(stsixe.yrotcerid( fi        
+;))(emaNteg.yrotcerid + " :yrotceriD"(nltnirp.maertStnirp            
 { ))(seliFtsil.yrotcerid : tnerruc eliF( rof            
-;))(emaNteg.yrotcerid + " :yrotceriD"(nltnirp.maertStnirp                
 ;)maertStnirp(tuOtes.metsyS                
 ;)(deifidoMtsal.tnerruc = sillim gnol                
 ;)(emiTetaDlacoLot.))(tluafeDmetsys.dIenoZ(enoZta.)sillim(illiMhcopEfo.tnatsnI = emiTetad emiTetaDlacoL                
