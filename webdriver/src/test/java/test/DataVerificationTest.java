@@ -8,24 +8,24 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import page.hurtMePlenty.FirstPageOfSearch;
-import page.hurtMePlenty.SecondPageOfSearch;
-import page.hurtMePlenty.ThirdPageOfSearch;
+import page.hurtMePlenty.EnterQuery;
+import page.hurtMePlenty.EnterCalculatorLink;
+import page.hurtMePlenty.DataEntry;
 
 
-public class HurtMePlentyTest {
+public class DataVerificationTest {
 
-    private  WebDriver driver=new ChromeDriver();
+    private WebDriver driver = new ChromeDriver();
 
     @Before
-    public void scriptResultOfApplication(){
-        new FirstPageOfSearch(driver)
+    public void scriptResultOfApplication() throws InterruptedException {
+        new EnterQuery(driver)
                 .openPage()
                 .clickButtonSearch()
                 .enterQuery("Google Cloud Platform Pricing Calculator");
-        new SecondPageOfSearch(driver)
+        new EnterCalculatorLink(driver)
                 .openCalculator();
-        new ThirdPageOfSearch(driver)
+        new DataEntry(driver)
                 .activateNumberOfInstance("4")
                 .selectOperatingSystem()
                 .selectMachineClass()
@@ -42,41 +42,48 @@ public class HurtMePlentyTest {
 
 
     @Test
-    public void resultsOfApplicationIsNotEmpty()  {
-        WebElement testResult=driver.findElement(By.xpath("//*/md-card/md-toolbar/div/h2"));
-        String resultIsNotEmpty = testResult.getText() ;
+    public void resultsOfApplicationIsNotEmpty() {
+        WebElement testResult = driver.findElement(By.xpath("//*/md-card/md-toolbar/div/h2"));
+        String resultIsNotEmpty = testResult.getText();
         Assert.assertEquals("Estimate", resultIsNotEmpty);
     }
 
 
     @Test
-    public void theRegionIsCorrect(){
-        String currentRegion=driver.findElement(By.xpath("//*/md-list/md-list-item[1]/div")).getText();
-        Assert.assertEquals("Region: Belgium",currentRegion);
+    public void theRegionIsCorrect() {
+        String currentRegion = driver.findElement(By.xpath("//*/md-list/md-list-item[1]/div")).getText();
+        Assert.assertEquals("Region: Belgium", currentRegion);
     }
 
 
     @Test
-    public void theCommitmentTermIsCorrect(){
+    public void theCommitmentTermIsCorrect() {
         Assert.assertTrue(driver.findElement(By.xpath("//*/md-list/md-list-item[3]/div"))
                 .getText().contains("Commitment term: 1 Year"));
     }
 
 
     @Test
-    public void localSSDIsCorrect(){
+    public void localSSDIsCorrect() {
         Assert.assertTrue(driver.findElement(By.xpath("//*/md-list/md-list-item[5]/div[1]"))
                 .getText().contains("Local SSD: 24x375 GiB"));
     }
 
     @Test
-    public void instanceTypeIsCorrect(){
+    public void instanceTypeIsCorrect() {
         Assert.assertTrue(driver.findElement(By.xpath("//*/md-list/md-list-item[4]/div[1]"))
                 .getText().contains("Instance type: n1-node-96-624"));
     }
+
+//    @Test
+//    public void GRUDiesIsCorrect() {
+//        Assert.assertTrue(driver.findElement(By.xpath("//*/md-list/md-list-item[6]/div[1]"))
+//                .getText().contains("GPU dies: 4 NVIDIA_TESLA_P4"));
+//    }
+
     @After
-    public void browserTearDown(){
+    public void browserTearDown() {
         driver.quit();
-        driver=null;
+        driver = null;
     }
 }

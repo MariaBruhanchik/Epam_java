@@ -7,9 +7,10 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 
-public class FirstPageOfSearch extends AbstractClass {
+public class EnterQuery extends AbstractClass {
 
     public static final String HOMEPAGE_URL = "http://cloud.google.com/";
+
 
     @FindBy(xpath = "//devsite-search[@tenant-name='Google Cloud']")
     private WebElement buttonSearch;
@@ -20,26 +21,26 @@ public class FirstPageOfSearch extends AbstractClass {
     @FindBy(className = "devsite-tabs-dropdown")
     private WebElement choiceHint;
 
-    public FirstPageOfSearch(WebDriver driver) {
+    public EnterQuery(WebDriver driver) {
         super(driver);
     }
 
-    public FirstPageOfSearch openPage() {
+    public EnterQuery openPage() {
         driver.get(HOMEPAGE_URL);
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS);
         return this;
     }
 
-    public FirstPageOfSearch clickButtonSearch() {
+    public EnterQuery clickButtonSearch() {
         buttonSearch.click();
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS);
         return this;
     }
 
-    public SecondPageOfSearch enterQuery(String query) {
+    public EnterCalculatorLink enterQuery(String query) {
         writeSearchQuery.sendKeys(query, Keys.ENTER);
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS);
-        return new SecondPageOfSearch(driver);
+        return new EnterCalculatorLink(driver);
     }
 
 
