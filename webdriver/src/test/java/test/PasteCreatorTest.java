@@ -33,6 +33,7 @@ public class PasteCreatorTest {
                 "git reset $(git commit-tree HEAD^{tree} -m \"Legacy code\")\n" +
                 "git push origin master --force"));
     }
+   
 
     @Test
     public void resultOfTitleIsCorrect() {

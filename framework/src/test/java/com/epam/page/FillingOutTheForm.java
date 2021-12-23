@@ -1,6 +1,11 @@
-package page.hardcore;
+package com.epam.page;
 
-import org.openqa.selenium.*;
+import com.epam.model.DataForFillingOutTheForm;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -10,20 +15,17 @@ import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class FillingOutTheForm extends AbstractHelperClass {
-    private static final String OPERATION_SYSTEM = "//*[@id='select_option_77']/div[1]";
-    private static final String MACHINE_CLASS = "//*[@id='select_option_90']/div[1]";
-    private static final String MACHINE_TYPE = "//*[@id='select_option_272']";
-    private static final String LOCAL_SSD = "//*[@id='select_option_133']";
-    private static final String GRUs_TYPE = "//*[@value='NVIDIA_TESLA_P4']";
-    private static final String NUMBER_OF_GRUs_TYPE = "//*[@id='select_option_424']/div[1]";
-    private static final String DATACENTER_LOCATION = "//*[@id='select_option_291']";
-    private static final String COMMITTED_USAGE = "//*[@id='select_option_140']";
 
-   ArrayList <String> tabs = new ArrayList<String>(driver.getWindowHandles());
-    public final String priceFromTheCalculator="//*[@id='resultBlock']/md-card/md-card-content/div/div/div/h2/b";
+    ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
+    public final String priceFromTheCalculator = "//*[@id='resultBlock']/md-card/md-card-content/div/div/div/h2/b";
+    public final String universalLocatorForSearchData = "//md-option/div[contains(text(),'";
+    public final String mainFrame = "//*[@id='cloud-site']/devsite-iframe/iframe";
+    public final String findPriceFromCalculator = "/html/body/md-content/md-card/md-toolbar/div/div[1]/h2";
+    private final Logger logger = LogManager.getRootLogger();
 
     @FindBy(id = "input_75")
     private WebElement numberOfInstances;
@@ -75,38 +77,38 @@ public class FillingOutTheForm extends AbstractHelperClass {
     }
 
 
-    public FillingOutTheForm activateNumberOfInstance(String number) {
+    public FillingOutTheForm activateNumberOfInstance(DataForFillingOutTheForm number) {
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
-                .until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.xpath("//*[@id='cloud-site']/devsite-iframe/iframe")));
+                .until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.xpath(mainFrame)));
         driver.switchTo().frame(driver.findElement(By.id("myFrame")));
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-        numberOfInstances.sendKeys(number);
+        numberOfInstances.sendKeys(number.getNumberOfInstance());
         return this;
     }
 
 
-    public FillingOutTheForm selectOperatingSystem() {
+    public FillingOutTheForm selectOperatingSystem(DataForFillingOutTheForm os) {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         listOfOperationSystems.click();
-        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
-                .until(ExpectedConditions.presenceOfElementLocated(By.xpath(OPERATION_SYSTEM))).click();
-        return this;
-    }
-
-
-    public FillingOutTheForm selectMachineClass() {
-        listOfMachineClass.click();
-        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS);
-        WebElement webElement = driver.findElement(By.xpath(String.format(MACHINE_CLASS)));
+        WebElement webElement = driver.findElement(By.xpath(locatorData(os.getOperationSystem())));
         webElement.click();
         return this;
     }
 
 
-    public FillingOutTheForm selectMachineType() {
+    public FillingOutTheForm selectMachineClass(DataForFillingOutTheForm mc) {
+        listOfMachineClass.click();
+        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS);
+        List<WebElement> elem = driver.findElements(By.xpath(String.format(locatorData(mc.getMachineClass()))));
+        elem.get(1).click();
+        return this;
+    }
+
+
+    public FillingOutTheForm selectMachineType(DataForFillingOutTheForm mt) {
         listOfMachineTypes.click();
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS);
-        WebElement webElement = driver.findElement(By.xpath(String.format(MACHINE_TYPE)));
+        WebElement webElement = driver.findElement(By.xpath(String.format(locatorData(mt.getMachineType()))));
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS);
         webElement.click();
         return this;
@@ -120,58 +122,56 @@ public class FillingOutTheForm extends AbstractHelperClass {
         return this;
     }
 
-    public FillingOutTheForm selectGRUsType() {
+    public FillingOutTheForm selectGRUsType(DataForFillingOutTheForm GType) {
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS);
         listOfGRUsType.click();
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-        WebElement webElement = driver.findElement(By.xpath(String.format(GRUs_TYPE)));
+        WebElement webElement = driver.findElement(By.xpath(String.format(locatorData(GType.getGRUsType()))));
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         webElement.click();
         return this;
     }
 
 
-    public FillingOutTheForm selectNumberOfGRUsType() throws InterruptedException {
+    public FillingOutTheForm selectNumberOfGRUsType(DataForFillingOutTheForm numberOfG) throws InterruptedException {
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         listOfNumberOfGRUs.click();
         Thread.sleep(2000);
-        WebElement webElement = driver.findElement(By.xpath(String.format(NUMBER_OF_GRUs_TYPE)));
-        webElement.click();
+        List<WebElement> elements = driver.findElements(By.xpath(String.format(locatorData(numberOfG.getNumberOfGRUsType()))));
+        elements.get(30).click();
         return this;
     }
 
 
-    public FillingOutTheForm selectLocalSSD() {
+    public FillingOutTheForm selectLocalSSD(DataForFillingOutTheForm local) {
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS);
         localSSD.click();
         WebElement webElement = new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
-                .until(ExpectedConditions.presenceOfElementLocated(By.xpath(LOCAL_SSD)));
+                .until(ExpectedConditions.presenceOfElementLocated(By.xpath(locatorData(local.getLocalSSD()))));
         webElement.click();
         return this;
     }
 
 
-    public FillingOutTheForm selectLocation() {
+    public FillingOutTheForm selectLocation(DataForFillingOutTheForm location) {
         listOfLocations.click();
-        WebElement webElement = new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
-                .until(ExpectedConditions.presenceOfElementLocated(By.xpath(DATACENTER_LOCATION)));
+        List<WebElement> elements = driver.findElements(By.xpath(String.format(locatorData(location.getDatacenterLocation()))));
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        webElement.click();
+        elements.get(2).click();
         return this;
     }
 
 
-    public FillingOutTheForm selectCommittedUsage() {
+    public FillingOutTheForm selectCommittedUsage(DataForFillingOutTheForm commitedUsage) {
         openCommitedUsage.click();
-        WebElement webElement = new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
-                .until(ExpectedConditions.presenceOfElementLocated(By.xpath(COMMITTED_USAGE)));
-        webElement.click();
+        List<WebElement> elements = driver.findElements(By.xpath(String.format(locatorData(commitedUsage.getCommittedUsage()))));
+        elements.get(1).click();
         return this;
     }
 
 
-    public FillingOutTheForm inputNumberOfNodes(String text) {
-        numberOfNodes.sendKeys(text);
+    public FillingOutTheForm inputNumberOfNodes(DataForFillingOutTheForm text) {
+        numberOfNodes.sendKeys(text.getNumberOfNodes());
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS);
         return this;
     }
@@ -185,10 +185,10 @@ public class FillingOutTheForm extends AbstractHelperClass {
     }
 
     public FillingOutTheForm clickTheButtonEmailEstimate() {
-        String mainPage=tabs.get(0);
+        String mainPage = tabs.get(0);
         driver.switchTo().window(mainPage);
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
-                .until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.xpath("//*[@id='cloud-site']/devsite-iframe/iframe")));
+                .until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.xpath(mainFrame)));
         driver.switchTo().frame(driver.findElement(By.id("myFrame")));
         buttonEmailEstimate.click();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
@@ -197,27 +197,37 @@ public class FillingOutTheForm extends AbstractHelperClass {
 
 
     public FillingOutTheForm sendEmail() throws IOException, UnsupportedFlavorException {
-        new WebDriverWait(driver,WAIT_TIMEOUT_SECONDS);
+        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS);
         String myText = (String) Toolkit.getDefaultToolkit().getSystemClipboard().getData(DataFlavor.stringFlavor);
-        new WebDriverWait(driver,WAIT_TIMEOUT_SECONDS);
+        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS);
         pasteEmail.sendKeys(myText);
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS);
         buttonSendEmail.click();
-        new WebDriverWait(driver,WAIT_TIMEOUT_SECONDS);
+        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS);
         return this;
     }
 
-    public boolean priceFromTheCalculator(String expectedPrice){
+    public boolean priceFromTheCalculator(String expectedPrice) {
         ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
         driver.switchTo().window(tabs.get(0));
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
-                .until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.xpath("//*[@id='cloud-site']/devsite-iframe/iframe")));
+                .until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.xpath(mainFrame)));
         driver.switchTo().frame(driver.findElement(By.id("myFrame")));
-        WebElement currentPrice=driver.findElement(By.xpath(priceFromTheCalculator));
-        System.out.println(currentPrice.getText());
-      return currentPrice.getText().contains(expectedPrice);
-
+        WebElement currentPrice = driver.findElement(By.xpath(priceFromTheCalculator));
+        logger.info(currentPrice.getText());
+        return currentPrice.getText().contains(expectedPrice);
     }
 
+    public String hasTheCalculatorOpen() {
+        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
+                .until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.xpath(mainFrame)));
+        driver.switchTo().frame(driver.findElement(By.id("myFrame")));
+        WebElement element = driver.findElement(By.xpath(findPriceFromCalculator));
+        return element.getText();
+    }
 
+    public String locatorData(String dataByString) {
+        String mockElements = universalLocatorForSearchData + dataByString + "')]";
+        return mockElements;
+    }
 }

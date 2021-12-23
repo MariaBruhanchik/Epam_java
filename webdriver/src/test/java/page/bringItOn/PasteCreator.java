@@ -33,15 +33,23 @@ public class PasteCreator {
     @FindBy(xpath = "//button[contains(text(),'Create New Paste')]")
     private WebElement buttonCreateNewPaste;
 
+    @FindBy(xpath = "//*/a[@href='/login']")
+    private WebElement pressLogin;
+
     public PasteCreator(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
     public PasteCreator openPage() {
-        driver.get("https://pastebin.com");
+        driver.get("https://pastebin.com/");
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS);
         return this;
+    }
+
+    public PageOfRegistration signInToProfile(){
+        pressLogin.click();
+        return new PageOfRegistration(driver);
     }
 
     public PasteCreator searchForTerms(String term) {

@@ -7,7 +7,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import page.hurtMePlenty.DataEntry;
 
 public class ChooseCorrectResultOfSearch extends AbstractHelperClass {
-    public static final String CALCULATOR_LINK = "Google Cloud Platform Pricing Calculator";
+    private static final String CALCULATOR_LINK = "Google Cloud Platform Pricing Calculator";
 
     public ChooseCorrectResultOfSearch(WebDriver driver) {
         super(driver);

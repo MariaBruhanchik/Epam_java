@@ -1,4 +1,4 @@
-package page.hurtMePlenty;
+package com.epam.page;
 
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -7,10 +7,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 
-public class EnterQuery extends InitDriverChrome {
+public class SearchGoogleCloudPlatformPricingCalculator extends AbstractHelperClass {
 
-    public static final String HOMEPAGE_URL = "http://cloud.google.com/";
-
+    private static final String HOMEPAGE_URL = "http://cloud.google.com/";
 
     @FindBy(xpath = "//devsite-search[@tenant-name='Google Cloud']")
     private WebElement buttonSearch;
@@ -21,27 +20,27 @@ public class EnterQuery extends InitDriverChrome {
     @FindBy(className = "devsite-tabs-dropdown")
     private WebElement choiceHint;
 
-    public EnterQuery(WebDriver driver) {
+    public SearchGoogleCloudPlatformPricingCalculator(WebDriver driver) {
         super(driver);
     }
 
-    public EnterQuery openPage() {
+    public SearchGoogleCloudPlatformPricingCalculator openPage() {
         driver.get(HOMEPAGE_URL);
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS);
         return this;
     }
 
-    public EnterQuery clickButtonSearch() {
+    public SearchGoogleCloudPlatformPricingCalculator clickButtonSearch() {
+        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS);
         buttonSearch.click();
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS);
         return this;
     }
 
-    public EnterCalculatorLink enterQuery(String query) {
+    public ChooseCorrectResultOfSearch enterQuery(String query) {
+        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS);
         writeSearchQuery.sendKeys(query, Keys.ENTER);
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS);
-        return new EnterCalculatorLink(driver);
+        return new ChooseCorrectResultOfSearch(driver);
     }
-
-
 }

@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
 
-public class DataEntry extends AbstractClass {
+public class DataEntry extends InitDriverChrome {
 
     private static final String OPERATION_SYSTEM = "//*[@id='select_option_77']/div[1]";
     private static final String MACHINE_CLASS = "//*[@id='select_option_90']/div[1]";

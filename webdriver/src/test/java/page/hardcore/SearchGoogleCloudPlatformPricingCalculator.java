@@ -5,11 +5,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import page.hurtMePlenty.EnterCalculatorLink;
+
 
 public class SearchGoogleCloudPlatformPricingCalculator extends AbstractHelperClass {
 
-    public static final String HOMEPAGE_URL = "http://cloud.google.com/";
+    private static final String HOMEPAGE_URL = "http://cloud.google.com/";
 
     @FindBy(xpath = "//devsite-search[@tenant-name='Google Cloud']")
     private WebElement buttonSearch;
@@ -43,6 +43,4 @@ public class SearchGoogleCloudPlatformPricingCalculator extends AbstractHelperCl
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS);
         return new ChooseCorrectResultOfSearch(driver);
     }
-
-
 }

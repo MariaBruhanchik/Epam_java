@@ -1,6 +1,5 @@
-package page.hardcore;
+package com.epam.page;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,7 +11,6 @@ import java.util.ArrayList;
 public class PageOfGeneratedEmail extends AbstractHelperClass {
 
     private static final String NEW_URL = " https://yopmail.com/ ";
-
 
     @FindBy(xpath = "//*[@href='email-generator']")
     private WebElement buttonEmailGenerator;
@@ -51,10 +49,11 @@ public class PageOfGeneratedEmail extends AbstractHelperClass {
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS);
         return this;
     }
+
     public GoogleCloudPriceEstimate checkEmail() throws InterruptedException {
-        // // Waiting for the reply of the letter
+        // Waiting for the reply of the letter
         Thread.sleep(3000);
-        new WebDriverWait(driver,WAIT_TIMEOUT_SECONDS);
+        new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS);
         ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
         driver.switchTo().window(tabs.get(1));
         buttonCheckEmail.click();
