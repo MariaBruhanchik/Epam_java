@@ -46,7 +46,6 @@ public class CorrespondenceOfThePriceOfTheLetterAndCalculatorPriceTest extends C
         GoogleCloudPriceEstimate googleCloudPriceEstimate = new GoogleCloudPriceEstimate(driver);
 
         Assert.assertTrue(fillingOutTheForm.priceFromTheCalculator(googleCloudPriceEstimate.priceThatHasReceived()));
-
     }
 }
 

@@ -54,7 +54,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
-                    <version>3.0.0-M5</version>
+                    <version> 2.22.1</version>
 
                 </plugin>
                 <plugin>
@@ -63,6 +63,8 @@
                     <configuration>
                         <source>11</source>
                         <target>11</target>
+                        <fork>true</fork>
+                        <executable>C:\Program Files\Java\jdk-11.0.3\bin\javac</executable>
                     </configuration>
                 </plugin>
             </plugins>
