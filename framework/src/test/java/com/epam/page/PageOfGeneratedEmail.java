@@ -33,10 +33,11 @@ public class PageOfGeneratedEmail extends AbstractHelperClass {
 
 
     public PageOfGeneratedEmail openPage() {
-        ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
         ((JavascriptExecutor) driver).executeScript("window.open()");
+        ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
         driver.switchTo().window(tabs.get(1));
         driver.get(NEW_URL);
+        logger.info("Open page of generated email ");
         return this;
     }
 
