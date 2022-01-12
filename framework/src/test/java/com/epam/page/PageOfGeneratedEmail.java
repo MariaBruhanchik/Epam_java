@@ -25,13 +25,15 @@ public class PageOfGeneratedEmail extends AbstractHelperClass {
     @FindBy(xpath = "//*[@onclick='egengo();']")
     private WebElement buttonCheckEmail;
 
+
     public PageOfGeneratedEmail(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver, this);
+        PageFactory.initElements(this.driver, this);
     }
 
 
-    public PageOfGeneratedEmail openNewTab() {
+    public PageOfGeneratedEmail openPage() {
+        ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
         ((JavascriptExecutor) driver).executeScript("window.open()");
         driver.switchTo().window(tabs.get(1));
         driver.get(NEW_URL);

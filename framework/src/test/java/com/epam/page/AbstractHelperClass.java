@@ -7,10 +7,11 @@ import org.openqa.selenium.WebDriver;
 import java.util.ArrayList;
 
 
-public class AbstractHelperClass {
+public abstract class AbstractHelperClass {
     protected WebDriver driver;
     protected final Logger logger = LogManager.getRootLogger();
-    protected final ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
+
+    protected abstract AbstractHelperClass openPage();
 
     protected final int WAIT_TIMEOUT_SECONDS = 40;
 

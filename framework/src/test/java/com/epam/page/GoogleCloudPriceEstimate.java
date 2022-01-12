@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 
@@ -14,9 +15,15 @@ public class GoogleCloudPriceEstimate extends AbstractHelperClass {
     private static final String PRICE_FROM_THE_LETTER = "//*[@id='mail']/div/div/table/tbody/tr[2]/td/table/tbody/tr[2]/td[2]";
     private final Logger logger = LogManager.getRootLogger();
 
+
+    @Override
+    protected GoogleCloudPriceEstimate openPage() {
+        return this;
+    }
+
     public GoogleCloudPriceEstimate(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver, this);
+        PageFactory.initElements(this.driver, this);
     }
 
     public String priceThatHasReceived() {

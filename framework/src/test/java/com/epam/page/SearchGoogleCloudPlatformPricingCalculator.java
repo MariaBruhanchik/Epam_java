@@ -23,9 +23,10 @@ public class SearchGoogleCloudPlatformPricingCalculator extends AbstractHelperCl
 
     public SearchGoogleCloudPlatformPricingCalculator(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver, this);
+        PageFactory.initElements(this.driver, this);
     }
 
+    @Override
     public SearchGoogleCloudPlatformPricingCalculator openPage() {
         driver.get(HOMEPAGE_URL);
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS);

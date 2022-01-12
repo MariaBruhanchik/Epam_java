@@ -2,8 +2,8 @@ package com.epam.test;
 
 import com.epam.model.DataForFillingOutTheForm;
 import com.epam.service.DataCreator;
-import org.junit.Assert;
-import org.junit.Test;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 import com.epam.page.*;
 
 import java.awt.datatransfer.UnsupportedFlavorException;
@@ -35,7 +35,7 @@ public class CorrespondenceOfThePriceOfTheLetterAndCalculatorPriceTest extends C
                 .selectCommittedUsage(dataForFillingOutTheForm)
                 .pressAddToEstimate();
         PageOfGeneratedEmail pageOfGeneratedEmail = new PageOfGeneratedEmail(driver)
-                .openNewTab()
+                .openPage()
                 .clickTheButtonEmailGenerator()
                 .clickTheButtonCopy();
         fillingOutTheForm

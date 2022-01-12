@@ -69,11 +69,15 @@ public class FillingOutTheForm extends AbstractHelperClass {
     @FindBy(xpath = "//*[@aria-label='Send Email']")
     private WebElement buttonSendEmail;
 
-    public FillingOutTheForm(WebDriver driver) {
-        super(driver);
-        PageFactory.initElements(driver, this);
+    @Override
+    protected FillingOutTheForm openPage() {
+        return this;
     }
 
+    public FillingOutTheForm(WebDriver driver) {
+        super(driver);
+        PageFactory.initElements(this.driver, this);
+    }
 
 
     public FillingOutTheForm activateNumberOfInstance(DataForFillingOutTheForm number) {
@@ -184,6 +188,7 @@ public class FillingOutTheForm extends AbstractHelperClass {
     }
 
     public FillingOutTheForm clickTheButtonEmailEstimate() {
+        ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
         String mainPage = tabs.get(0);
         driver.switchTo().window(mainPage);
         new WebDriverWait(driver, WAIT_TIMEOUT_SECONDS)
@@ -213,7 +218,7 @@ public class FillingOutTheForm extends AbstractHelperClass {
                 .until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.xpath(mainFrame)));
         driver.switchTo().frame(driver.findElement(By.id("myFrame")));
         WebElement currentPrice = driver.findElement(By.xpath(priceFromTheCalculator));
-        logger.info("Price from the calculator: "+currentPrice.getText());
+        logger.info("Price from the calculator: " + currentPrice.getText());
         return currentPrice.getText().contains(expectedPrice);
     }
 
