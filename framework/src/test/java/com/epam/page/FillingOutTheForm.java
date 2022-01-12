@@ -1,12 +1,11 @@
 package com.epam.page;
 
 import com.epam.model.DataForFillingOutTheForm;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -20,12 +19,10 @@ import java.util.concurrent.TimeUnit;
 
 public class FillingOutTheForm extends AbstractHelperClass {
 
-    ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
     public final String priceFromTheCalculator = "//*[@id='resultBlock']/md-card/md-card-content/div/div/div/h2/b";
     public final String universalLocatorForSearchData = "//md-option/div[contains(text(),'";
     public final String mainFrame = "//*[@id='cloud-site']/devsite-iframe/iframe";
     public final String findPriceFromCalculator = "/html/body/md-content/md-card/md-toolbar/div/div[1]/h2";
-    private final Logger logger = LogManager.getRootLogger();
 
     @FindBy(id = "input_75")
     private WebElement numberOfInstances;
@@ -74,7 +71,9 @@ public class FillingOutTheForm extends AbstractHelperClass {
 
     public FillingOutTheForm(WebDriver driver) {
         super(driver);
+        PageFactory.initElements(driver, this);
     }
+
 
 
     public FillingOutTheForm activateNumberOfInstance(DataForFillingOutTheForm number) {
@@ -214,7 +213,7 @@ public class FillingOutTheForm extends AbstractHelperClass {
                 .until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.xpath(mainFrame)));
         driver.switchTo().frame(driver.findElement(By.id("myFrame")));
         WebElement currentPrice = driver.findElement(By.xpath(priceFromTheCalculator));
-        logger.info(currentPrice.getText());
+        logger.info("Price from the calculator: "+currentPrice.getText());
         return currentPrice.getText().contains(expectedPrice);
     }
 

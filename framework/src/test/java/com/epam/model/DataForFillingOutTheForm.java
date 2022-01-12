@@ -105,16 +105,16 @@ public class DataForFillingOutTheForm {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof DataForFillingOutTheForm)) return false;
         DataForFillingOutTheForm that = (DataForFillingOutTheForm) o;
-        return Objects.equals(operationSystem, that.operationSystem) && Objects.equals(machineClass, that.machineClass)
-                && Objects.equals(machineType, that.machineType) && Objects.equals(localSSD, that.localSSD)
-                && Objects.equals(GRUsType, that.GRUsType) && Objects.equals(numberOfGRUsType, that.numberOfGRUsType)
-                && Objects.equals(datacenterLocation, that.datacenterLocation) && Objects.equals(committedUsage, that.committedUsage);
+        return Objects.equals(getOperationSystem(), that.getOperationSystem()) && Objects.equals(getMachineClass(), that.getMachineClass())
+                && Objects.equals(getMachineType(), that.getMachineType()) && Objects.equals(getLocalSSD(), that.getLocalSSD())
+                && Objects.equals(getGRUsType(), that.getGRUsType()) && Objects.equals(getNumberOfGRUsType(), that.getNumberOfGRUsType())
+                && Objects.equals(getDatacenterLocation(), that.getDatacenterLocation()) && Objects.equals(getCommittedUsage(), that.getCommittedUsage());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(operationSystem, machineClass, machineType, localSSD, GRUsType, numberOfGRUsType, datacenterLocation, committedUsage);
+        return Objects.hash(getOperationSystem(), getMachineClass(), getMachineType(), getLocalSSD(), getGRUsType(), getNumberOfGRUsType(), getDatacenterLocation(), getCommittedUsage());
     }
 }

@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
 
 import java.util.concurrent.TimeUnit;
 
@@ -15,13 +16,14 @@ public class GoogleCloudPriceEstimate extends AbstractHelperClass {
 
     public GoogleCloudPriceEstimate(WebDriver driver) {
         super(driver);
+        PageFactory.initElements(driver, this);
     }
 
     public String priceThatHasReceived() {
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.switchTo().frame(driver.findElement(By.id("ifmail")));
         WebElement currentPrice = driver.findElement(By.xpath(PRICE_FROM_THE_LETTER));
-        logger.info(currentPrice.getText());
+        logger.info("Price from the letter: " + currentPrice.getText());
         return currentPrice.getText();
 
 
