@@ -17,7 +17,7 @@ import java.time.format.DateTimeFormatter;
 
 
 public class TestListener implements ITestListener {
-    public Logger log = LogManager.getRootLogger();
+    private Logger log = LogManager.getRootLogger();
 
     public void onTestStart(ITestResult result) {
     }
