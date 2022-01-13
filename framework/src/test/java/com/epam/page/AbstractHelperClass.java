@@ -4,8 +4,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 
-import java.util.ArrayList;
-
 
 public abstract class AbstractHelperClass {
     protected WebDriver driver;
